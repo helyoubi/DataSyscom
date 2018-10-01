@@ -2,12 +2,70 @@
 
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
-<xs:element name="SubmitCard">
-    <xs:complexType>
-        <xs:sequence>
+<xsd:element name="SubmitCard">
+    <xsd:complexType>
 
-        
-        
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute name="name" type="xsd:string" ></xsd:attribute>
+                <xsd:attribute name="label" type="xsd:string" ></xsd:attribute>
+                <xsd:attribute name="description" type="xsd:string" ></xsd:attribute>
+                <xsd:attribute name="priority" type="xsd:string" ></xsd:attribute>
+            </xsd:extension>
+        </xsd:simpleContent>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute name="marque" type="xsd:string" ></xsd:attribute>
+                <xsd:attribute name="type" type="xsd:string" ></xsd:attribute>
+            </xsd:extension>
+        </xsd:simpleContent>
+
+        <xsd:element name="Destination" default="Queue">
+            <xs:complexType>
+           
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Queue"/>
+                        <xs:enumeration value="Worflow"/>
+                    </xs:restriction>
+                </xs:simpleType>
+
+            </xs:complexType>
+        </xsd:element>
+
+        <xsd:element name="Devices">
+            <xsd:complexType>
+               
+
+
+            </xsd:complexType>
+        </xsd:element>
+
+
+
+
+
 
 
 
@@ -15,6 +73,5 @@
 
         <xsd:element name="ExtraArgs" type="xsd:string" />
 
-        <xs:sequence>
-    </xs:complexType>
-</xs:element>
+    </xsd:complexType>
+</xsd:element>
