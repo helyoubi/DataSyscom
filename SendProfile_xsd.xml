@@ -4,74 +4,65 @@
 
 <xsd:element name="SubmitCard">
     <xsd:complexType>
+        <xsd:sequence>
 
-        <xsd:simpleContent>
-            <xsd:extension base="xsd:string">
-                <xsd:attribute name="name" type="xsd:string" ></xsd:attribute>
-                <xsd:attribute name="label" type="xsd:string" ></xsd:attribute>
-                <xsd:attribute name="description" type="xsd:string" ></xsd:attribute>
-                <xsd:attribute name="priority" type="xsd:string" ></xsd:attribute>
-            </xsd:extension>
-        </xsd:simpleContent>
+            <!-- xsd SubmitCard -->
 
+            <xsd:attribute name="name" type="xsd:string" ></xsd:attribute>
+            <xsd:attribute name="label" type="xsd:string" ></xsd:attribute>
+            <xsd:attribute name="description" type="xsd:string" ></xsd:attribute>
+            <xsd:attribute name="priority" type="xsd:string" ></xsd:attribute>
+        
+            <!-- xsd Destination -->
 
+            <xsd:element name="Destination">
+                <xsd:complexType>
+                    <xsd:sequence>
 
+                        <xsd:restriction base="xsd:string">
+                            <xsd:enumeration value="Queue"/>
+                            <xsd:enumeration value="Worflow"/>          
+                        </xsd:restriction>
 
+                        <xsd:attribute name="name" type="xsd:string" ></xsd:attribute>
 
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
 
+            <!-- xsd Devices -->
 
+            <xsd:element name="Devices">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="Device">
+                            <xsd:complexType>
+                                <xsd:sequence>
 
+                                    <xsd:element name="name" type="xsd:string" ></xsd:element>                
+                                    <xsd:element name="label" type="xsd:string" ></xsd:element>    
+                                    
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
 
+            
+            <!-- xsd Parameters -->
 
-
-
-
-
-
-
-
-
-
-
-
-        <xsd:simpleContent>
-            <xsd:extension base="xsd:string">
-                <xsd:attribute name="marque" type="xsd:string" ></xsd:attribute>
-                <xsd:attribute name="type" type="xsd:string" ></xsd:attribute>
-            </xsd:extension>
-        </xsd:simpleContent>
-
-        <xsd:element name="Destination" default="Queue">
-            <xs:complexType>
-           
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:enumeration value="Queue"/>
-                        <xs:enumeration value="Worflow"/>
-                    </xs:restriction>
-                </xs:simpleType>
-
-            </xs:complexType>
-        </xsd:element>
-
-        <xsd:element name="Devices">
-            <xsd:complexType>
-               
-
-
-            </xsd:complexType>
-        </xsd:element>
+            
 
 
 
 
 
+            <!-- xsd ExtraArgs -->
 
+            <xsd:element name="ExtraArgs" type="xsd:string" />
 
-
-
-
-        <xsd:element name="ExtraArgs" type="xsd:string" />
-
+        </xsd:sequence>
     </xsd:complexType>
 </xsd:element>
+</xsd:schema>
