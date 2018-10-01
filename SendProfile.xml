@@ -8,16 +8,23 @@
     </Devices>
 
     <Parameters>
-        <Parameter visibility="modifiable ou show* ou hidden" type="enum de type(text*, int, date, ..." name="name" label="label" required="true* ou false" persist="true or false*">default Value</Parameter>
+    
+        <Parameter visibility="modifiable ou show* ou hidden" type="enum de type(text*, int, date, ..." name="name" 
+        label="label" required="true* ou false" persist="true or false*">default Value</Parameter>
+        
         <ParametersGroup label="label du groupe de paramètre">
             <Parameter>
             </Parameter>
         </ParametersGroup>
-                <ParametersGroup label="label du groupe de paramètre gffd">
+                
+                
+        <ParametersGroup label="label du groupe de paramètre gffd">
             <Parameter>
             </Parameter>
+
             <Parameter>
             </Parameter>
+
             <Parameter>
             </Parameter>
         </ParametersGroup>
