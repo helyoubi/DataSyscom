@@ -5,7 +5,7 @@
 
     <!-- Balise racine -->
 
-    <xs:element name="SubmitCard" type="SubmitCard" />
+    <xsd:element name="SubmitCard" type="SubmitCard" />
 
     <!-- D�claration des types -->
 
@@ -23,10 +23,10 @@
     <xsd:complexType name="Destination">
     
         <xsd:simpleType name="type" final="restriction" >
-            <xs:restriction base="xs:string">
+            <xsd:restriction base="xs:string">
                 <xsd:enumeration value="Queue"/>
                 <xsd:enumeration value="Worflow"/> 
-            </xs:restriction>
+            </xsd:restriction>
         </xsd:simpleType>
 
         <xsd:attribute name="type" type="type" ></xsd:attribute>
@@ -76,20 +76,20 @@
     <xsd:complexType name="Parameter">
 
             <xsd:simpleType name="visibility" final="restriction" >
-                <xs:restriction base="xs:string">
+                <xsd:restriction base="xs:string">
                     <xsd:enumeration value="modifiable"/>
                     <xsd:enumeration value="show"/>
                     <xsd:enumeration value="hidden"/> 
-                </xs:restriction>
+                </xsd:restriction>
             </xsd:simpleType>
 
             <xsd:simpleType name="type" final="restriction" >
-                <xs:restriction base="xs:string">
+                <xsd:restriction base="xs:string">
                     <xsd:enumeration value="text"/>
                     <xsd:enumeration value="int"/>
                     <xsd:enumeration value="date"/>
                     <xsd:enumeration value="boolean"/> 
-                </xs:restriction>
+                </xsd:restriction>
             </xsd:simpleType>
 
             <xsd:attribute name="visibility" type="visibility" default="show"></xsd:attribute>
@@ -104,6 +104,6 @@
 
             <xsd:attribute name="persist" type="xsd:boolean" default="false"></xsd:attribute>
 
-    </xs:complexType>
+    </xsd:complexType>
 
 </xsd:schema>
