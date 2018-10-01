@@ -19,10 +19,12 @@
                 <xsd:complexType>
                     <xsd:sequence>
 
-                        <xsd:restriction base="xsd:string">
-                            <xsd:enumeration value="Queue"/>
-                            <xsd:enumeration value="Worflow"/>          
-                        </xsd:restriction>
+                        <xsd:simpleType name="type" final="restriction" >
+                            <xs:restriction base="xs:string">
+                                <xsd:enumeration value="Queue"/>
+                                <xsd:enumeration value="Worflow"/> 
+                            </xs:restriction>
+                        </xsd:simpleType>
 
                         <xsd:attribute name="name" type="xsd:string" ></xsd:attribute>
 
@@ -39,8 +41,8 @@
                             <xsd:complexType>
                                 <xsd:sequence>
 
-                                    <xsd:element name="name" type="xsd:string" ></xsd:element>                
-                                    <xsd:element name="label" type="xsd:string" ></xsd:element>    
+                                    <xsd:attribute name="name" type="xsd:string" ></xsd:attribute>                
+                                    <xsd:attribute name="label" type="xsd:string" ></xsd:attribute>    
                                     
                                 </xsd:sequence>
                             </xsd:complexType>
@@ -52,9 +54,57 @@
             
             <!-- xsd Parameters -->
 
-            
+            <xsd:element name="Parameters">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="Parameter">
+                            <xsd:complexType>
+                                <xsd:sequence>
+
+                                    <xsd:simpleType name="visibility" final="restriction" >
+                                        <xs:restriction base="xs:string">
+                                            <xsd:enumeration value="modifiable"/>
+                                            <xsd:enumeration value="show"/>
+                                            <xsd:enumeration value="hidden"/> 
+                                        </xs:restriction>
+                                    </xsd:simpleType>
+
+                                    <xsd:simpleType name="type" final="restriction" >
+                                        <xs:restriction base="xs:string">
+                                            <xsd:enumeration value="text"/>
+                                            <xsd:enumeration value="int"/>
+                                            <xsd:enumeration value="date"/> 
+                                        </xs:restriction>
+                                    </xsd:simpleType>
 
 
+                                    <xsd:attribute name="name" type="xsd:string" ></xsd:attribute>
+
+                                    <xsd:attribute name="label" type="xsd:string" ></xsd:attribute>
+
+                                    <xsd:attribute name="required" type="xsd:boolean" ></xsd:attribute>
+
+                                    <xsd:attribute name="persist" type="xsd:boolean" ></xsd:attribute>
+
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+
+                        <xsd:element name="ParametersGroup">
+                            <xsd:complexType>
+                                <xsd:sequence>
+
+                                    <xsd:attribute name="label" type="xsd:string" ></xsd:attribute>
+
+                                    <xsd:element name="Parameter" type="Parameter" />
+
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>      
+
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
 
 
 

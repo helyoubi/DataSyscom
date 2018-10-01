@@ -13,8 +13,7 @@
         label="label" required="true* ou false" persist="true or false*">default Value</Parameter>
         
         <ParametersGroup label="label du groupe de paramètre">
-            <Parameter>
-            </Parameter>
+            <Parameter></Parameter>
         </ParametersGroup>
                 
                 
@@ -28,6 +27,7 @@
             <Parameter>
             </Parameter>
         </ParametersGroup>
+
     </Parameters>
 
     <ExtraArgs>gfdg
