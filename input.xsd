@@ -7,7 +7,7 @@
 
 	<xs:element name="files" type="si:files" />
 
-	<!-- Déclaration des types -->
+	<!-- Dï¿½claration des types -->
 
 	<xs:complexType name="files">
 		<xs:sequence>

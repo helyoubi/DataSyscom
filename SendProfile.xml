@@ -1,3 +1,5 @@
+
+
 <SubmitCards>
     <SubmitCard name="unique name card" label="label card" description="" priority="">
 
@@ -10,8 +12,7 @@
 
         <Parameters>
 
-            <Parameter visibility="modifiable ou show* ou hidden" type="enum de type(text*, int, date, choice..." name="name" label="label" required="true* ou false" 
-            persist="true or false*" defaultValue="default Value">
+            <Parameter visibility="modifiable ou show* ou hidden" type="enum de type(text*, int, date, choice..." name="name" label="label" required="true* ou false" persist="true or false*" defaultValue="default Value">
                 <choice value="value" label="label"/>
                 <choice value="value" label="label"/>
             </Parameter>
