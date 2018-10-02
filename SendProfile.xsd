@@ -1,35 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.datasyscom.fr/iom/submit">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.datasyscom.fr/iom/submit" 
+    xmlns:si="http://www.datasyscom.fr/iom/submit" elementFormDefault="qualified">
+
+    <xsd:simpleType name="type">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="text"/>
+            <xsd:enumeration value="int"/>
+            <xsd:enumeration value="date"/>
+            <xsd:enumeration value="boolean"/>
+            <xsd:enumeration value="choice"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="typeDestination">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Queue"/>
+            <xsd:enumeration value="Worflow"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="visibility">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="modifiable"/>
+            <xsd:enumeration value="show"/>
+            <xsd:enumeration value="hidden"/>
+        </xsd:restriction>
+    </xsd:simpleType>
 
 
-    <!-- Balise racine -->
+    <!-- Déclaration des types -->
 
-    <xsd:element name="SubmitCards" type="SubmitCard" />
+    <xsd:complexType name="SubmitCards">
 
-    <!-- D�claration des types -->
+        <xsd:sequence>
+            <xsd:element name="SubmitCard" type="si:SubmitCard"/>
+        </xsd:sequence>
+
+    </xsd:complexType>
 
     <xsd:complexType name="SubmitCard">
 
         <xsd:sequence>
-            <xsd:element name="Destination" type="Destination" />
-            <xsd:element name="Devices" type="Devices" maxOccurs="1"/>
-            <xsd:element name="Parameters" type="Parameters" />
-            <xsd:element name="ExtraArgs" type="ExtraArgs"/>
+            <xsd:element name="Destination" type="si:Destination"/>
+            <xsd:element name="Devices" type="si:Devices" maxOccurs="1"/>
+            <xsd:element name="Parameters" type="si:Parameters" />
+            <xsd:element name="ExtraArgs" type="xsd:string"/>
         </xsd:sequence>
 
     </xsd:complexType>
 
     <xsd:complexType name="Destination">
 
-        <xsd:simpleType name="type" final="restriction">
-            <xsd:restriction base="xsd:string">
-                <xsd:enumeration value="Queue"/>
-                <xsd:enumeration value="Worflow"/>
-            </xsd:restriction>
-        </xsd:simpleType>
-
-        <xsd:attribute name="type" type="type"></xsd:attribute>
+        <xsd:attribute name="type" type="si:typeDestination"></xsd:attribute>
 
         <xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
 
@@ -39,7 +62,7 @@
     <xsd:complexType name="Devices">
 
         <xsd:sequence>
-            <xsd:element name="Device" type="Device" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element name="Device" type="si:Device" minOccurs="1" maxOccurs="unbounded"/>
         </xsd:sequence>
 
     </xsd:complexType>
@@ -56,40 +79,33 @@
     <xsd:complexType name="Parameters">
 
         <xsd:sequence>
-            <xsd:element name="Parameter" type="Parameter" minOccurs="1" maxOccurs="unbounded"/>
-            <xsd:element name="ParametersGroup" type="ParametersGroup" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element name="Parameter" type="si:Parameter" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="ParametersGroup" type="si:ParametersGroup" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
 
     </xsd:complexType>
+
+    <xsd:complexType name="ParametersGroup">
+
+        <xsd:sequence>
+            <xsd:element name="Parameter" type="si:Parameter" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+
+        <xsd:attribute name="label" type="xsd:string" use="required"></xsd:attribute>
+
+    </xsd:complexType>
+
 
 
     <xsd:complexType name="Parameter">
 
         <xsd:sequence>
-            <xsd:element name="choice" type="choice"/>
+            <xsd:element name="choice" type="si:choice"/>
         </xsd:sequence>
 
-        <xsd:simpleType name="visibility" final="restriction">
-            <xsd:restriction base="xsd:string">
-                <xsd:enumeration value="modifiable"/>
-                <xsd:enumeration value="show"/>
-                <xsd:enumeration value="hidden"/>
-            </xsd:restriction>
-        </xsd:simpleType>
+        <xsd:attribute name="visibility" type="si:visibility" default="show"></xsd:attribute>
 
-        <xsd:simpleType name="type" final="restriction">
-            <xsd:restriction base="xs:string">
-                <xsd:enumeration value="text"/>
-                <xsd:enumeration value="int"/>
-                <xsd:enumeration value="date"/>
-                <xsd:enumeration value="boolean"/>
-                <xsd:enumeration value="choice"/>
-            </xsd:restriction>
-        </xsd:simpleType>
-
-        <xsd:attribute name="visibility" type="visibility" default="show"></xsd:attribute>
-
-        <xsd:attribute name="type" type="type" default="text"></xsd:attribute>
+        <xsd:attribute name="type" type="si:type" default="text"></xsd:attribute>
 
         <xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
 
@@ -105,14 +121,11 @@
 
     <xsd:complexType name="choice">
 
-        <xsd:attribute name="value" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="value" type="xsd:string" use="required"></xsd:attribute>
 
         <xsd:attribute name="label" type="xsd:string" use="required"></xsd:attribute>
 
     </xsd:complexType>
-
-
-    <xsd:element name="ExtraArgs" type="xsd:string"/>
 
 
 </xsd:schema>
