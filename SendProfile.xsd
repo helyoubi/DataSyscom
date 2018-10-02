@@ -4,7 +4,6 @@
     xmlns:si="http://www.datasyscom.fr/iom/submit" elementFormDefault="qualified">
 
 
-
     <!-- Déclaration des types -->
 
     <xsd:complexType name="SubmitCards">
