@@ -3,30 +3,6 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.datasyscom.fr/iom/submit" 
     xmlns:si="http://www.datasyscom.fr/iom/submit" elementFormDefault="qualified">
 
-    <xsd:simpleType name="type">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="text"/>
-            <xsd:enumeration value="int"/>
-            <xsd:enumeration value="date"/>
-            <xsd:enumeration value="boolean"/>
-            <xsd:enumeration value="choice"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="typeDestination">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Queue"/>
-            <xsd:enumeration value="Worflow"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="visibility">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="modifiable"/>
-            <xsd:enumeration value="show"/>
-            <xsd:enumeration value="hidden"/>
-        </xsd:restriction>
-    </xsd:simpleType>
 
 
     <!-- Déclaration des types -->
@@ -43,7 +19,7 @@
 
         <xsd:sequence>
             <xsd:element name="Destination" type="si:Destination"/>
-            <xsd:element name="Devices" type="si:Devices" maxOccurs="1"/>
+            <xsd:element name="Devices" type="si:Devices" minOccurs="0"/>
             <xsd:element name="Parameters" type="si:Parameters" />
             <xsd:element name="ExtraArgs" type="xsd:string"/>
         </xsd:sequence>
@@ -52,7 +28,16 @@
 
     <xsd:complexType name="Destination">
 
-        <xsd:attribute name="type" type="si:typeDestination"></xsd:attribute>
+        <xsd:attribute name="type" use="required">
+
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Queue"/>
+                    <xsd:enumeration value="Worflow"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+
+        </xsd:attribute>
 
         <xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
 
@@ -103,9 +88,31 @@
             <xsd:element name="choice" type="si:choice"/>
         </xsd:sequence>
 
-        <xsd:attribute name="visibility" type="si:visibility" default="show"></xsd:attribute>
+        <xsd:attribute name="visibility" default="show">
 
-        <xsd:attribute name="type" type="si:type" default="text"></xsd:attribute>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="modifiable"/>
+                    <xsd:enumeration value="show"/>
+                    <xsd:enumeration value="hidden"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+
+        </xsd:attribute>
+
+        <xsd:attribute name="type" default="text">
+
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="text"/>
+                    <xsd:enumeration value="int"/>
+                    <xsd:enumeration value="date"/>
+                    <xsd:enumeration value="boolean"/>
+                    <xsd:enumeration value="choice"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+
+        </xsd:attribute>
 
         <xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
 
