@@ -5,7 +5,7 @@
 
     <!-- Balise racine -->
 
-    <xsd:element name="SubmitCard" type="SubmitCard" />
+    <xsd:element name="SubmitCards" type="SubmitCard" />
 
     <!-- D�claration des types -->
 
@@ -75,6 +75,10 @@
 
     <xsd:complexType name="Parameter">
 
+            <xsd:sequence>
+                <xsd:element name="choice" type="choice" minOccurs="1" maxOccurs="unbounded"/>
+            </xsd:sequence>
+
             <xsd:simpleType name="visibility" final="restriction" >
                 <xsd:restriction base="xs:string">
                     <xsd:enumeration value="modifiable"/>
@@ -103,6 +107,16 @@
             <xsd:attribute name="required" type="xsd:boolean" default="true"></xsd:attribute>
 
             <xsd:attribute name="persist" type="xsd:boolean" default="false"></xsd:attribute>
+
+            <xsd:attribute name="defaultValue" type="xsd:string"></xsd:attribute>
+
+    </xsd:complexType>
+
+    <xsd:complexType name="choice">
+
+           <xsd:attribute name="value" type="xsd:string"></xsd:attribute>
+
+           <xsd:attribute name="lable" type="xsd:string"></xsd:attribute>
 
     </xsd:complexType>
 

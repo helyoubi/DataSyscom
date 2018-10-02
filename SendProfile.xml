@@ -1,37 +1,43 @@
-<SubmitCard name="unique name card" label="label card" description="" priority="">
+<SubmitCards>
+    <SubmitCard name="unique name card" label="label card" description="" priority="">
 
-    <Destination type="Queue* ou Worflow" name="name"/>
+        <Destination type="Queue* ou Worflow" name="name"/>
 
-    <Devices>
-        <Device name="nom du device" label="label du device"/>
-        <Device name="nom du device" label="label du device"/>
-    </Devices>
+        <Devices>
+            <Device name="nom du device" label="label du device"/>
+            <Device name="nom du device" label="label du device"/>
+        </Devices>
 
-    <Parameters>
-    
-        <Parameter visibility="modifiable ou show* ou hidden" type="enum de type(text*, int, date, ..." name="name" 
-        label="label" required="true* ou false" persist="true or false*">default Value</Parameter>
-        
-        <ParametersGroup label="label du groupe de paramètre">
-            <Parameter></Parameter>
-        </ParametersGroup>
-                
-                
-        <ParametersGroup label="label du groupe de paramètre gffd">
-            <Parameter>
+        <Parameters>
+
+            <Parameter visibility="modifiable ou show* ou hidden" type="enum de type(text*, int, date, choice..." name="name" label="label" required="true* ou false" 
+            persist="true or false*" defaultValue="default Value">
+                <choice value="value" label="label"/>
+                <choice value="value" label="label"/>
             </Parameter>
 
-            <Parameter>
-            </Parameter>
+            <ParametersGroup label="label du groupe de paramètre">
+                <Parameter></Parameter>
+                <Parameter></Parameter>
+            </ParametersGroup>
 
-            <Parameter>
-            </Parameter>
-        </ParametersGroup>
 
-    </Parameters>
+            <ParametersGroup label="label du groupe de paramètre gffd">
+                <Parameter>
+                </Parameter>
 
-    <ExtraArgs>gfdg
-    </ExtraArgs>
-   
-</SubmitCard>
+                <Parameter>
+                </Parameter>
+
+                <Parameter>
+                </Parameter>
+            </ParametersGroup>
+
+        </Parameters>
+
+        <ExtraArgs>gfdg
+        </ExtraArgs>
+
+    </SubmitCard>
+</SubmitCards>
 
