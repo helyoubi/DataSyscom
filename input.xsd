@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.datasyscom.fr/dispatch/input"
+	xmlns:si="http://www.datasyscom.fr/dispatch/input" elementFormDefault="qualified">
+
+	<!-- Balise racine -->
+
+	<xs:element name="files" type="si:files" />
+
+	<!-- Déclaration des types -->
+
+	<xs:complexType name="files">
+		<xs:sequence>
+			<xs:element name="file" type="si:file" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+
+		<xs:attribute name="count" type="xs:int" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="file">
+		<xs:sequence>
+			<xs:element name="documents" type="si:documents" minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+
+		<xs:attribute name="dataFile" type="xs:string" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="documents">
+		<xs:sequence>
+			<xs:element name="document" type="si:document" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+
+		<xs:attribute name="count" type="xs:int" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="document">
+		<xs:sequence>
+			<xs:element name="index" type="si:index" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+
+		<xs:attribute name="startPage" type="xs:int" use="required" />
+		<xs:attribute name="endPage" type="xs:int" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="index">
+		<xs:sequence>
+			<xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+
+		<xs:attribute name="name" type="xs:string" use="required" />
+	</xs:complexType>
+
+</xs:schema>
