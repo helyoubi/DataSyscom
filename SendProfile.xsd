@@ -9,7 +9,7 @@
     <xsd:complexType name="SubmitCards">
 
         <xsd:sequence>
-            <xsd:element name="SubmitCard" type="si:SubmitCard"/>
+            <xsd:element name="SubmitCard" type="si:SubmitCard" minOccurs="1" maxOccurs="unbounded"/>
         </xsd:sequence>
 
     </xsd:complexType>
@@ -20,20 +20,20 @@
             <xsd:element name="Destination" type="si:Destination"/>
             <xsd:element name="Devices" type="si:Devices" minOccurs="0"/>
             <xsd:element name="Parameters" type="si:Parameters" />
-            <xsd:element name="ExtraArgs" type="xsd:string"/>
+            <xsd:element name="ExtraArgs" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
 
     </xsd:complexType>
 
 
     <xsd:complexType name="Destination">
-        <xsd:attribute name="type" type="si:destinationEnum" use="required"/>
+        <xsd:attribute name="type" type="si:destinationType" use="required"/>
         <xsd:attribute name="name" type="xsd:string" use="required"/>
     </xsd:complexType>
 
     <!--SimpleType (Destination)-->
 
-    <xsd:simpleType name="destinationEnum">
+    <xsd:simpleType name="destinationType">
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="Queue"/>
             <xsd:enumeration value="Worflow"/>
@@ -81,10 +81,10 @@
     <xsd:complexType name="Parameter">
 
         <xsd:sequence>
-            <xsd:element name="choice" type="si:choice"/>
+            <xsd:element name="choice" type="si:parametreChoice" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
 
-        <xsd:attribute name="visibility" type="si:visibilityEnum" default="show"/>
+        <xsd:attribute name="visibility" type="si:parametreVisibility" default="show"/>
 
         <xsd:attribute name="type" type="si:parametreEnum" default="text"/>
 
@@ -102,7 +102,7 @@
 
     <!--SimpleType (visibility,type)-->
 
-    <xsd:simpleType name="visibilityEnum">
+    <xsd:simpleType name="parametreVisibility">
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="modifiable"/>
             <xsd:enumeration value="show"/>
@@ -120,7 +120,7 @@
         </xsd:restriction>
     </xsd:simpleType>
 
-    <xsd:complexType name="choice">
+    <xsd:complexType name="parametreChoice">
 
         <xsd:attribute name="value" type="xsd:string" use="required"></xsd:attribute>
 
