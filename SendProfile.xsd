@@ -25,22 +25,20 @@
 
     </xsd:complexType>
 
+
     <xsd:complexType name="Destination">
-
-        <xsd:attribute name="type" use="required">
-
-            <xsd:simpleType>
-                <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="Queue"/>
-                    <xsd:enumeration value="Worflow"/>
-                </xsd:restriction>
-            </xsd:simpleType>
-
-        </xsd:attribute>
-
-        <xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
-
+        <xsd:attribute name="type" type="si:destinationEnum" use="required"/>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
     </xsd:complexType>
+
+    <!--SimpleType (Destination)-->
+
+    <xsd:simpleType name="destinationEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Queue"/>
+            <xsd:enumeration value="Worflow"/>
+        </xsd:restriction>
+    </xsd:simpleType>
 
 
     <xsd:complexType name="Devices">
@@ -80,38 +78,15 @@
     </xsd:complexType>
 
 
-
     <xsd:complexType name="Parameter">
 
         <xsd:sequence>
             <xsd:element name="choice" type="si:choice"/>
         </xsd:sequence>
 
-        <xsd:attribute name="visibility" default="show">
+        <xsd:attribute name="visibility" type="si:visibilityEnum" default="show"/>
 
-            <xsd:simpleType>
-                <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="modifiable"/>
-                    <xsd:enumeration value="show"/>
-                    <xsd:enumeration value="hidden"/>
-                </xsd:restriction>
-            </xsd:simpleType>
-
-        </xsd:attribute>
-
-        <xsd:attribute name="type" default="text">
-
-            <xsd:simpleType>
-                <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="text"/>
-                    <xsd:enumeration value="int"/>
-                    <xsd:enumeration value="date"/>
-                    <xsd:enumeration value="boolean"/>
-                    <xsd:enumeration value="choice"/>
-                </xsd:restriction>
-            </xsd:simpleType>
-
-        </xsd:attribute>
+        <xsd:attribute name="type" type="si:parametreEnum" default="text"/>
 
         <xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
 
@@ -124,6 +99,26 @@
         <xsd:attribute name="defaultValue" type="xsd:string"></xsd:attribute>
 
     </xsd:complexType>
+
+    <!--SimpleType (visibility,type)-->
+
+    <xsd:simpleType name="visibilityEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="modifiable"/>
+            <xsd:enumeration value="show"/>
+            <xsd:enumeration value="hidden"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="parametreEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="text"/>
+            <xsd:enumeration value="int"/>
+            <xsd:enumeration value="date"/>
+            <xsd:enumeration value="boolean"/>
+            <xsd:enumeration value="choice"/>
+        </xsd:restriction>
+    </xsd:simpleType>
 
     <xsd:complexType name="choice">
 
